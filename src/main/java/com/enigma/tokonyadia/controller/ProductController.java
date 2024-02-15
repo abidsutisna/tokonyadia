@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -126,6 +128,13 @@ public class ProductController {
     @GetMapping("/searchKey2")
     public List<Product> findProductByNameOrStock(@RequestParam(required = false) String name, @RequestParam(required = false) Integer stock) {
             return productService.findProductByNameOrStockOrPrice(name, stock);
+    }
+
+
+    @GetMapping("page")
+    public Page<Product> getProductPerPage(@RequestParam Integer page, @RequestParam Integer size) {
+        return productService.getProductPerPage(PageRequest.of(page, size));
+        
     }
 
 }

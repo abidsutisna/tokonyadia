@@ -3,6 +3,8 @@ package com.enigma.tokonyadia.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.enigma.tokonyadia.models.entity.Product;
@@ -54,5 +56,10 @@ public class ProductServiceImpl implements ProductService {
             return this.productRepository.findAll();
         }
 
+    }
+
+    @Override
+    public Page<Product> getProductPerPage(Pageable pageable) {
+        return this.productRepository.findAll(pageable);
     }
 }
