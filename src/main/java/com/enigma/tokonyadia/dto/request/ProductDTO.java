@@ -1,4 +1,4 @@
-package com.enigma.tokonyadia.dto;
+package com.enigma.tokonyadia.dto.request;
 
 
 import jakarta.validation.constraints.NotEmpty;
@@ -10,12 +10,9 @@ import lombok.Setter;
 @Setter
 public class ProductDTO {
 
-    @NotEmpty(message = "Product name is required")
     private String name;
 
-    @NotNull
     private int price;
 
-    @NotNull
     private int stock;
 }

@@ -4,11 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.enigma.tokonyadia.dto.request.ProductDTO;
 import com.enigma.tokonyadia.models.entity.Product;
 import com.enigma.tokonyadia.models.repos.ProductRepository;
+import com.enigma.tokonyadia.specification.SpesificationProduct;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -59,7 +63,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> getProductPerPage(Pageable pageable) {
-        return this.productRepository.findAll(pageable);
+    public Page<Product> getProductPerPage(String name, Integer stock, Integer price, Pageable pageable) {
+
+        Specification<Product> spec = Specification.where(null);
+
+        if(name != null && !name.isEmpty()) {
+            spec = spec.and(SpesificationProduct.hasName(name));
+        }
+
+        if(stock != null) {
+            spec = spec.and(SpesificationProduct.hasStock(stock));
+        }
+        
+        if(price != null){
+            spec = spec.and(SpesificationProduct.hasPrice(price));
+        }
+
+        return this.productRepository.findAll(spec, pageable);
     }
 }

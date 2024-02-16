@@ -1,4 +1,4 @@
-package com.enigma.tokonyadia.dto;
+package com.enigma.tokonyadia.dto.response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ResponseDTO<T> {
-    private boolean status;
+    private String status;
     private T payload;
     private List<String> message = new ArrayList<>();
 }

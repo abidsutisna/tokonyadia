@@ -15,5 +15,5 @@ public interface ProductService {
     public void updateProduct(Product product);
     void deleteProductByid(String id);
     List<Product> findProductByNameOrStockOrPrice(String name, Integer stock);
-    Page<Product> getProductPerPage(Pageable pageable);
+    Page<Product> getProductPerPage(String name, Integer stock, Integer price, Pageable pageable);
 }
