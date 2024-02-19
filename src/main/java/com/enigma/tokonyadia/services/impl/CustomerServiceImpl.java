@@ -1,4 +1,4 @@
-package com.enigma.tokonyadia.services;
+package com.enigma.tokonyadia.services.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.enigma.tokonyadia.models.entity.Customer;
 import com.enigma.tokonyadia.models.repos.CustomerRepository;
+import com.enigma.tokonyadia.services.CustomerService;
 import com.enigma.tokonyadia.specification.SpesificationCustomer;
 
 @Service

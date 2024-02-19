@@ -11,4 +11,8 @@ public interface MessageResultConstant {
     public static final String UPDATE_SUCCESS_CUSTOMER = Message.succesUpdateMessageCustomer();
     public static final String DELETE_SUCCESS_CUSTOMER = Message.succesDeleteMessageCustomer();
     public static final String NOT_FOUND_CUSTOMER = Message.notFoundMessageCustomer();
+
+    public static final String CREATE_SUCCES_PURCHASE = Message.succesCreateMessagePurchase();
+    public static final String DELETE_SUCCESS_PURCHASE_DETAIL = Message.succesCreateMessagePurchaseDetail();
+    public static final String STOCK_NOT_ENOUGH = Message.stockNotEnough();
 } 

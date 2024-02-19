@@ -27,4 +27,16 @@ public class Message {
     public static  String notFoundMessageCustomer(){
         return "product not customer";
     }
+
+    public static  String succesCreateMessagePurchase(){
+        return "succes add purchase";
+    }
+
+    public static  String succesCreateMessagePurchaseDetail(){
+        return "succes add purchase detail";
+    }
+
+    public static  String stockNotEnough(){
+        return "stock not enough";
+    }
 }

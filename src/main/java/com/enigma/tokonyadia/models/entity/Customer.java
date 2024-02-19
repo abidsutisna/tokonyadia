@@ -1,11 +1,10 @@
 package com.enigma.tokonyadia.models.entity;
 
 import java.sql.Date;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 import com.enigma.tokonyadia.utils.GenderEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -13,6 +12,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,4 +40,9 @@ public class Customer {
     
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "customerId")
+    @JsonBackReference
+    private List<Purchase> purchases;
+
 }

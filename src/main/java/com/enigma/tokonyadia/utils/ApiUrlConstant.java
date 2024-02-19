@@ -3,6 +3,8 @@ package com.enigma.tokonyadia.utils;
 public interface ApiUrlConstant {
     public static final String BASE_PATH_PRODUCT = "/product";
     public static final String BASE_PATH_CUSTOMER = "/customer";
+    public static final String BASE_PATH_PURCHASE = "/purchase";
+    public static final String BASE_PATH_PURCHASE_DETAIL = "/purchasedetail";
     public static final String PATH_ID = "/{id}";
     public static final String PATH_PAGE = "/page";
     public static final String SEARCH_KEY = "/searchKey";

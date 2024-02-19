@@ -8,13 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,21 +21,23 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "product")
-public class Product {
+@Table(name = "t_purchase_detail")
+public class PurchaseDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    private String name;
-
-    private int price;
-
-    private int stock;
-
-    @OneToMany(mappedBy = "productId")
+    @ManyToOne
+    @JoinColumn(name = "purchase_id", referencedColumnName = "id")
     @JsonBackReference
-    private List<PurchaseDetail> purchaseDetails;
+    private Purchase purchaseId;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product productId;
+
+    private Integer priceSell;
+
+    private Integer quantity;
 }
