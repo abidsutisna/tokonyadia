@@ -1,4 +1,4 @@
-package security;
+package com.enigma.tokonyadia.securiry;
 
 import org.apache.tomcat.util.net.DispatchType;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +29,7 @@ public class SecurityConfig {
                     .sessionManagement(cfg -> cfg.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .authorizeHttpRequests(request -> 
                         request.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
-                            .requestMatchers("/**").permitAll()
+                            .requestMatchers("/auth/**").permitAll()
                             .anyRequest().authenticated()
                         )
                     .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class).build();

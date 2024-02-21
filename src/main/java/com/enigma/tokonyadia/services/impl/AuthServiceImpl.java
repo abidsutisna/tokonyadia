@@ -11,12 +11,12 @@ import com.enigma.tokonyadia.dto.response.UserResponse;
 import com.enigma.tokonyadia.models.entity.Role;
 import com.enigma.tokonyadia.models.entity.UserCredential;
 import com.enigma.tokonyadia.models.repos.UserCredentialRepository;
+import com.enigma.tokonyadia.securiry.JwtUtils;
 import com.enigma.tokonyadia.services.AuthService;
 import com.enigma.tokonyadia.services.RoleService;
 import com.enigma.tokonyadia.utils.RoleEnum;
 
 import lombok.RequiredArgsConstructor;
-import security.JwtUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -28,9 +28,9 @@ public class AuthServiceImpl implements AuthService{
 
     private final RoleService roleService;
 
-    // private final JwtUtils jwtUtils;
+    private final JwtUtils jwtUtils;
 
-    // private final AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     @Override
     public String login(String email, String password) {

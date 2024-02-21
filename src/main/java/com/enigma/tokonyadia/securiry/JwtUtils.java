@@ -1,4 +1,4 @@
-package security;
+package com.enigma.tokonyadia.securiry;
 
 import java.security.SignatureException;
 import java.time.Instant;
@@ -20,22 +20,20 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.enigma.tokonyadia.dto.response.JwtClaim;
 import com.enigma.tokonyadia.models.entity.UserCredential;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 @Service
-@AllArgsConstructor
 public class JwtUtils {
     
-    @Value("&{app.tokonyadia.jwt-secret}")
+    @Value("${jwt.secretKey}")
     private String secretKey;
     
-    @Value("&{app.tokonyadia.jwt-expirationInSecond}")
+    @Value("${jwt.expiretionInSecond}")
     private Long expiretionInSecond;
 
-    @Value("&{app.tokonyadia.jwt-appName}")
+    @Value("${jwt.appName}")
     private String appName;
     
     public String generateToken(UserCredential user) {

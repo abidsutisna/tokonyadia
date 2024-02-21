@@ -11,7 +11,8 @@ import com.enigma.tokonyadia.dto.request.AuthRequest;
 import com.enigma.tokonyadia.dto.response.ResponseDTO;
 import com.enigma.tokonyadia.dto.response.UserResponse;
 import com.enigma.tokonyadia.services.AuthService;
-import com.enigma.tokonyadia.utils.ApiUrlConstant;
+import com.enigma.tokonyadia.utils.Message;
+import com.enigma.tokonyadia.utils.MessageResultConstant;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +30,7 @@ public class AuthController {
         UserResponse userResponse = authService.register(authRequest);
 
         response.setPayload(userResponse);
-        response.setMessage(null);
+        response.getMessage().add(MessageResultConstant.SUCCESS_REGISTER);
         response.setStatus(HttpStatus.CREATED.getReasonPhrase());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

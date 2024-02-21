@@ -1,4 +1,4 @@
-package security;
+package com.enigma.tokonyadia.securiry;
 
 import java.io.IOException;
 
@@ -20,9 +20,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@RequiredArgsConstructor
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
     private final JwtUtils jwtUtils;
@@ -36,7 +36,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
             String token = parseJwt(request);
             if(token != null && jwtUtils.verifyJwtToken(token)) {
                 JwtClaim userInfo = jwtUtils.getUserInfoByToken(token);
-                log.info("testtt");
                 UserDetails userDetails = userCredentialService.loadByUserCredentialId(userInfo.getUserId());
 
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
