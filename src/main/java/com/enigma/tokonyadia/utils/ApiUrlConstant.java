@@ -10,4 +10,7 @@ public interface ApiUrlConstant {
     public static final String SEARCH_KEY = "/searchKey";
     public static final String SEARCH_KEY2 = "/searchKey2";
     public static final String PATH_UPDATE = "/update";
+    public static final String BASE_PATH_AUTH = "/auth";
+    public static final String LOGIN = "/login";
+    public static final String REGISTER = "/register";
 } 

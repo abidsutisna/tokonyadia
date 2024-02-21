@@ -39,4 +39,8 @@ public class Message {
     public static  String stockNotEnough(){
         return "stock not enough";
     }
+
+    public static  String succesResgister(){
+        return "successfully register";
+    }
 }

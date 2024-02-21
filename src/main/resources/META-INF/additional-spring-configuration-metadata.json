@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "app.tokonyadia.jwt-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'app.tokonyadia.jwt-secret'"
+  },
+  {
+    "name": "app.tokonyadia.jwt-expirationInSecond",
+    "type": "java.lang.String",
+    "description": "A description for 'app.tokonyadia.jwt-expirationInSecond'"
+  },
+  {
+    "name": "app.tokonyadia.jwt-appName",
+    "type": "java.lang.String",
+    "description": "A description for 'app.tokonyadia.jwt-appName'"
+  },
+  {
+    "name": "app.tokonyadia.jwt-expirationInSecond",
+    "type": "java.lang.String",
+    "description": "A description for 'app.tokonyadia.jwt-expirationInSecond'"
+  },
+  {
+    "name": "app.tokonyadia.jwt-appName",
+    "type": "java.lang.String",
+    "description": "A description for 'app.tokonyadia.jwt-appName'"
+  },
+  {
+    "name": "app.tokonyadia.jwt-appName",
+    "type": "java.lang.String",
+    "description": "A description for 'app.tokonyadia.jwt-appName'"
+  }
+]}
