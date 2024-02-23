@@ -3,6 +3,7 @@ package com.enigma.tokonyadia.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,7 @@ public class PurchaseController {
     private ProductRepository productRepository;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'CUSTOMER')")
     public ResponseEntity<ResponseDTO<Purchase>> addPurchase(@RequestBody @Valid PurchaseDTO purchaseDTO, Errors errors) {
 
         ResponseDTO<Purchase> responseDTO = new ResponseDTO<>();
@@ -80,6 +82,7 @@ public class PurchaseController {
     }
 
     @GetMapping(ApiUrlConstant.PATH_ID)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<?> findPurchaseById(@PathVariable String id) {
 
         ResponseDTO<Purchase> responseDTO = new ResponseDTO<>();

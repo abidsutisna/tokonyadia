@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,6 +40,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseDTO<Product>> addProduct(@RequestBody @Valid ProductDTO productDTO, Errors errors) {
         
         ResponseDTO<Product> responseDTO = new ResponseDTO<>();
@@ -66,6 +68,7 @@ public class ProductController {
     }
 
     @PutMapping(ApiUrlConstant.PATH_UPDATE)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseDTO<Product>> updateProduct(@RequestBody @Valid Product product, Errors errors) {
         
         ResponseDTO<Product> responseDTO = new ResponseDTO<>();
@@ -89,6 +92,7 @@ public class ProductController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'CUSTOMER')")
     public List<Product> getAllProducts() {
         return productService.getAllProduct();
     }
@@ -105,11 +109,13 @@ public class ProductController {
     }
 
     @GetMapping(ApiUrlConstant.SEARCH_KEY)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'CUSTOMER')")
     public List<Product> findProductByName(@RequestParam String value) {
             return productService.findProductByName(value);
     }
     
     @GetMapping(ApiUrlConstant.PATH_ID)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'CUSTOMER')")
     public ResponseEntity<?> findProductById(@PathVariable String id) {
 
         ResponseDTO<Product> responseDTO = new ResponseDTO<>();
@@ -126,11 +132,13 @@ public class ProductController {
     }
 
     @GetMapping(ApiUrlConstant.SEARCH_KEY2)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'CUSTOMER')")
     public List<Product> findProductByNameOrStock(@RequestParam(required = false) String name, @RequestParam(required = false) Integer stock) {
             return productService.findProductByNameOrStockOrPrice(name, stock);
     }
 
     @GetMapping(ApiUrlConstant.PATH_PAGE)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'CUSTOMER')")
     public PageResponseWrapper<Product> getProductPerPage(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) Integer stock,

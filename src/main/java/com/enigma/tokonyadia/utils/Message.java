@@ -43,4 +43,8 @@ public class Message {
     public static  String succesResgister(){
         return "successfully register";
     }
+
+    public static  String succesLogin(){
+        return "successfully login";
+    }
 }

@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,9 +40,12 @@ public class Customer {
     
     @Column(name = "phone_number")
     private String phoneNumber;
+    //sampai sini register
 
     @OneToMany(mappedBy = "customerId")
     @JsonBackReference
     private List<Purchase> purchases;
 
+    @OneToOne
+    private UserCredential userCredential;
 }

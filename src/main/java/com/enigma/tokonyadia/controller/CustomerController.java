@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,6 +40,7 @@ public class CustomerController {
     private CustomerService customerService;
     
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseDTO<Customer>> addCustomer(@RequestBody @Valid CustomerDTO customerDTO, Errors errors){
         ResponseDTO<Customer> responseDTO = new ResponseDTO<>();
 
@@ -66,6 +68,7 @@ public class CustomerController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResponseDTO<Customer>> updateCustomer(@RequestBody Customer customer, Errors errors){
         ResponseDTO<Customer> responseDTO = new ResponseDTO<>();
 
@@ -88,11 +91,13 @@ public class CustomerController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public List<Customer> getAllCustomer(){
         return customerService.getAllCustomer();
     }
 
     @DeleteMapping(ApiUrlConstant.PATH_ID)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<String> deleteCustomerById (@PathVariable String id) {
         try {
             customerService.deleteCustomerByid(id);
@@ -104,11 +109,13 @@ public class CustomerController {
     }
 
     @GetMapping(ApiUrlConstant.SEARCH_KEY)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public List<Customer> findCustomerByName(@RequestParam String name) {
             return customerService.findCustomerByName(name);
     }
 
     @GetMapping(ApiUrlConstant.PATH_ID)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<?> findCustomerById(@PathVariable String id) {
 
         ResponseDTO<Customer> responseDTO = new ResponseDTO<>();
@@ -125,6 +132,7 @@ public class CustomerController {
     }
 
     @GetMapping(ApiUrlConstant.PATH_PAGE)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public PageResponseWrapper<Customer> getCustomerPerPage(@RequestParam(required = false, defaultValue = "0") Integer page,@RequestParam(required = false) String name, @RequestParam(required = false, defaultValue = "5") Integer size, @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "ASC") String direction) {
         Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
         PageResponseWrapper response = new PageResponseWrapper<>(customerService.getCustomerPerPage(name, PageRequest.of(page, size, sort))); 
